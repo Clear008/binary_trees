@@ -21,14 +21,13 @@ if (!w_new)
 {
 	return (NULL);
 }
-	w_new->n = value;
-	w_new->parent = parent;
-	w_new->right = NULL;
+w_new->n = value;
+w_new->parent = parent;
+w_new->right = NULL;
 w_new->left = parent->left;
-parent->left = w_new;
 
 if (w_new->left)
 	w_new->left->parent = w_new;
-
+parent->left = w_new;
 	return (w_new);
 }
