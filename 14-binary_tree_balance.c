@@ -36,7 +36,7 @@ return ((w_l > w_r) ? w_l : w_r);
 
 int binary_tree_balance(const binary_tree_t *tree)
 {
-int w_l = 0, w_r = 0, w_t = 0;
+int w_l, w_r , w_t = 0;
 
 if (tree == NULL)
 {
@@ -44,8 +44,8 @@ return (0);
 }
 else
 {
-		w_l = ((int)binary_tree_height(tree->left));
-		w_r = ((int)binary_tree_height(tree->right));
+		w_l = (binary_tree_height(tree->left));
+		w_r = (binary_tree_height(tree->right));
 		w_t = w_l - w_r;
 }
 	return (w_t);
