@@ -19,8 +19,8 @@ return (0);
 else
 {
 
-w_l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-w_r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
+w_l = tree->left ? 1 + binary_tree_height(tree->left) : 1;
+w_r = tree->right ? 1 + binary_tree_height(tree->right) : 1;
 
 return ((w_l > w_r) ? w_l : w_r);
 }
@@ -36,7 +36,7 @@ return ((w_l > w_r) ? w_l : w_r);
 
 int binary_tree_balance(const binary_tree_t *tree)
 {
-int w_l, w_r , w_t = 0;
+int w_l, w_r, w_t = 0;
 
 if (tree == NULL)
 {
