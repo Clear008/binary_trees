@@ -69,6 +69,8 @@ if (tree == NULL)
 {
 return (0);
 }
+if (!tree->right && !tree->left)
+		return (1);
 
 height = binary_tree_height(tree);
 expected_nodes = ((1 << height) -1);
