@@ -27,7 +27,7 @@ return ((w_l > w_r) ? w_l : w_r);
 
 }
 
-#include"binary_trees.h"
+
 /**
  * binary_tree_size-  function that measures the size of a BT
  * @tree: a pointer to the root node of the tree to be measured
@@ -71,7 +71,7 @@ return (0);
 }
 
 height = binary_tree_height(tree);
-expected_nodes = (1 << height) -1;
+expected_nodes = ((1 << height) -1);
 
 return (binary_tree_size(tree) == expected_nodes);
 }
