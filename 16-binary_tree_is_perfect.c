@@ -1,79 +1,49 @@
-#include"binary_trees.h"
+#include "binary_trees.h"
 
 /**
- * binary_tree_height- function that that deletes an entire binary tree
- * @tree: a pointer to the root node of the tree to be measured
- * Return: the height of a binary tree
+ * binary_tree_height - Measures the height of a binary tree
+ * @tree: A pointer to the root node of the tree to measure the height.
  *
-*/
-
+ * Return: The height of the binary tree, or 0 if tree is NULL.
+ */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-size_t w_l = 0, w_r = 0;
+    size_t left_height, right_height;
 
-if (tree == NULL)
-{
-return (0);
+    if (tree == NULL)
+        return (0);
+
+    left_height = binary_tree_height(tree->left);
+    right_height = binary_tree_height(tree->right);
+
+    return (1 + (left_height > right_height ? left_height : right_height));
 }
-
-else
-{
-
-w_l = tree->left ? 1 + binary_tree_height(tree->left) : 0;
-w_r = tree->right ? 1 + binary_tree_height(tree->right) : 0;
-
-return ((w_l > w_r) ? w_l : w_r);
-}
-
-}
-
 
 /**
- * binary_tree_size-  function that measures the size of a BT
- * @tree: a pointer to the root node of the tree to be measured
- * Return: the dsize of a BT
+ * binary_tree_size - Measures the size of a binary tree
+ * @tree: A pointer to the root node of the tree to measure the size.
  *
-*/
-
+ * Return: The size of the binary tree, or 0 if tree is NULL.
+ */
 size_t binary_tree_size(const binary_tree_t *tree)
 {
-size_t w_size = 0;
+    if (tree == NULL)
+        return (0);
 
-if (tree == NULL)
-{
-return (0);
+    return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
 }
-
-else
-{
-		w_size += 1;
-		w_size += binary_tree_size(tree->left);
-		w_size += binary_tree_size(tree->right);
-}
-	return (w_size);
-}
-
 
 /**
- * binary_tree_is_perfect- function that  checks if a binary tree is perfect
- * @tree: is a pointer to the root node of the tree to check
- * Return: return 1 if the tree is perfect, 0 otherwise
+ * binary_tree_is_perfect - Checks if a binary tree is perfect.
+ * @tree: A pointer to the root node of the tree to check.
  *
-*/
-
+ * Return: If the tree is perfect, 1. Otherwise, 0.
+ */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-size_t height, expected_nodes;
+    size_t height = binary_tree_height(tree);
+    size_t size = binary_tree_size(tree);
+    size_t max_size = (1 << height) - 1; /* Max size for a perfect tree */
 
-if (tree == NULL)
-{
-return (0);
-}
-if (!tree->right && !tree->left)
-		return (1);
-
-height = binary_tree_height(tree);
-expected_nodes = ((1 << height) -1);
-
-return (binary_tree_size(tree) == expected_nodes);
+    return (size == max_size ? 1 : 0);
 }
