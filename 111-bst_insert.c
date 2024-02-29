@@ -23,7 +23,7 @@ if (w_new == NULL)
 {
 return (NULL);
 }
-w_new = *tree;
+*tree = w_new;
 return (w_new);
 }
 if (value < crt->n)
@@ -32,21 +32,20 @@ if (crt->left != NULL)
 return (bst_insert(&(crt->left), value));
 w_new = binary_tree_node(crt, value);
 if (w_new == NULL)
-{
 return (NULL);
+
+crt->left = w_new;
+return (w_new);
 }
-return (crt->left);
-}
-if (value > crt->n)
+else if (value > crt->n)
 {
 if (crt->right != NULL)
 return (bst_insert(&(crt->right), value));
 w_new = binary_tree_node(crt, value);
 if (w_new == NULL)
-{
 return (NULL);
-}
-return (crt->right);
+crt->right = w_new;
+return (w_new);
 }
 return (NULL);
 }
